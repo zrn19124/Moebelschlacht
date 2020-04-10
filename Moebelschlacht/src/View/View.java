@@ -259,10 +259,10 @@ public class View extends BorderPane{
 		d.setLayoutX(12);
 		d.setPrefSize(160, 50);
 		
-		a.setOnAction(event-> con.schiff1());
-		b.setOnAction(event-> con.schiff2());
-		c.setOnAction(event-> con.schiff3());
-		d.setOnAction(event-> con.schiff4());
+		a.setOnAction(event-> con.furniture1());
+		b.setOnAction(event-> con.furniture2());
+		c.setOnAction(event-> con.furniture3());
+		d.setOnAction(event-> con.furniture4());
 	}
 	
 	public void koordinaten()

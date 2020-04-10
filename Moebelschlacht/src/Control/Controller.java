@@ -32,8 +32,8 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 	int zsp = 0;
 	Pane p = new Pane();
 	ArrayList<Pane>arli = new ArrayList<>();
-	int yourships = 0;
-	int friendsships = 0;
+	int yourfurniture = 0;
+	int friendsfurniture = 0;
 	boolean treffer = false;
 	int anzahlgetroffenyou = 0;
 	int anzahlgetroffenfriend = 0;
@@ -69,7 +69,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 
 	}
 
-	public void schiff1() {
+	public void furniture1() {
 
 		if (tf % 2 == 0) {
 			vi.getB().setDisable(true);
@@ -100,7 +100,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 		}
 	}
 													
-	public void schiff2() {
+	public void furniture2() {
 		if (tf % 2 == 0) {
 			vi.getA().setDisable(true);
 			vi.getC().setDisable(true);
@@ -130,7 +130,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 		}
 	}
 
-	public void schiff3() {
+	public void furniture3() {
 		if (tf % 2 == 0) {
 			vi.getA().setDisable(true);
 			vi.getB().setDisable(true);
@@ -161,7 +161,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 
 	}
 
-	public void schiff4() {
+	public void furniture4() {
 
 		if (tf % 2 == 0) {
 			vi.getA().setDisable(true);
@@ -282,7 +282,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 							yx[abc(k2)][Integer.parseInt(k1)+i] = true;
 						}
 					} else {
-						welchesschiff();
+						whichfurniture();
 					}
 				} else {
 
@@ -297,7 +297,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 						
 					} else {
 						
-						welchesschiff();
+						whichfurniture();
 					}
 				}
 				
@@ -307,7 +307,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 						
 	}
 
-	public void welchesschiff() // anzahl verwendet verringern
+	public void whichfurniture() // anzahl verwendet verringern
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Achtung");
