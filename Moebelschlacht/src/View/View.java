@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import Model.*;
@@ -25,6 +26,8 @@ import Model.*;
 import Control.*;
 
 import java.util.Optional;
+
+import com.sun.javafx.css.Style;
 
 
 public class View extends BorderPane{
@@ -118,8 +121,8 @@ public class View extends BorderPane{
 	
 	public void anweisungstexte()
 	{
-		l.setText("Choose a ship:");
-		l.setPadding(new Insets(20, 10, 10, 40));
+		l.setText("Choose a furniture:");
+		l.setPadding(new Insets(10, 10, 5, 20));
 		l.setFont(new Font("Arial", 16));
 		l.setStyle("-fx-font-weight: bold");
 		
@@ -191,26 +194,36 @@ public class View extends BorderPane{
 	
 	public void schiffeErzeugen()
 	{
-		ImageView va = new ImageView(new Image("img/Schiff4.PNG"));
+		ImageView va = new ImageView(new Image("img/tisch.PNG"));
 		va.setFitHeight(50);
 		va.setFitWidth(140);
-		ImageView vb = new ImageView(new Image("img/Schiff1.PNG"));
+		ImageView vb = new ImageView(new Image("img/bett.PNG"));
 		vb.setFitHeight(50);
 		vb.setFitWidth(140);
-		ImageView vc = new ImageView(new Image("img/Schiff2.PNG"));
+		ImageView vc = new ImageView(new Image("img/couch.PNG"));
 		vc.setFitHeight(50);
 		vc.setFitWidth(140);
-		ImageView vd = new ImageView(new Image("img/Schiff3.PNG"));		
+		ImageView vd = new ImageView(new Image("img/küche.PNG"));		
 		vd.setFitHeight(50);
 		vd.setFitWidth(140);
 		
-		
+		a.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		a.setBorder(new Border(new BorderStroke(Color.CADETBLUE,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 		a.setGraphic(va);	
 		a.setUserData("a");
+		
+		b.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		b.setBorder(new Border(new BorderStroke(Color.DARKMAGENTA,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 		b.setGraphic(vb);	
 		b.setUserData("b");
+		
+		c.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		c.setBorder(new Border(new BorderStroke(Color.DEEPPINK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 		c.setGraphic(vc);	
 		c.setUserData("c");
+		
+		d.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		d.setBorder(new Border(new BorderStroke(Color.MEDIUMAQUAMARINE,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 		d.setGraphic(vd);
 		d.setUserData("d");
 		
@@ -220,17 +233,17 @@ public class View extends BorderPane{
 		// 3 - 3
 		// 4 - 2 
 		
-		a.setLayoutY(60);
-		a.setLayoutX(20);
-		a.setPrefSize(160, 50);
-		b.setLayoutY(130);
-		b.setLayoutX(20);
-		b.setPrefSize(160, 50);
-		c.setLayoutY(200);
-		c.setLayoutX(20);
+		a.setLayoutY(40);
+		a.setLayoutX(12);
+		a.setPrefSize(10, 50);
+		b.setLayoutY(115);
+		b.setLayoutX(12);
+		b.setPrefSize(170, 50);
+		c.setLayoutY(190);
+		c.setLayoutX(12);
 		c.setPrefSize(160, 50);
-		d.setLayoutY(270);
-		d.setLayoutX(20);
+		d.setLayoutY(265);
+		d.setLayoutX(12);
 		d.setPrefSize(160, 50);
 		
 		a.setOnAction(event-> con.schiff1());
