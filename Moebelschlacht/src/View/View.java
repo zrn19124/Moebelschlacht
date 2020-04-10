@@ -46,13 +46,13 @@ public class View extends BorderPane{
 	GridPane grid = new GridPane();
 	ChoiceBox<String> xKoordinateAnfang = new ChoiceBox<String>();
 	ChoiceBox<Integer> yKoordinateAnfang = new ChoiceBox<Integer>();
-	Label xKanfang = new Label("x-coordinate");
-	Label yKanfang = new Label("y-coordinate");
+	Label xKanfang = new Label("x-Koordinate");
+	Label yKanfang = new Label("y-Koordinate");
 	Label anfang = new Label("Start");
 	Label orientierung = new Label("Orientation");
 	Label achtung = new Label();
-	Button clear = new Button("Clear");
-	Button submit = new Button("Submit");
+	Button clear = new Button("Löschen");
+	Button submit = new Button("Bestätigen");
 	ToggleGroup group = new ToggleGroup();
 	RadioButton rb1 = new RadioButton();
 	RadioButton rb2 = new RadioButton();
@@ -60,14 +60,14 @@ public class View extends BorderPane{
 	Pane pane1 = new Pane();
 	TextArea input = new TextArea();
 	TextField feld = new TextField();
-	Button send = new Button("Send");
-	Label an = new Label("Attack:");
-	Label x = new Label("x-coordinate");
-	Label y = new Label("y-coordinate");	
+	Button send = new Button("Senden");
+	Label an = new Label("Attackieren:");
+	Label x = new Label("x-Koordinate");
+	Label y = new Label("y-Koordinate");	
 	ChoiceBox<String> xGegner = new ChoiceBox<String>();
 	ChoiceBox<Integer> yGegner = new ChoiceBox<Integer>();
-	Button submit2 = new Button("Submit");
-	Label turn = new Label("Wait for Friend");
+	Button submit2 = new Button("Bestätigen");
+	Label turn = new Label("Warten auf Freund");
 
 	public GridPane getFriend() {
 		return friend;
@@ -92,13 +92,24 @@ public class View extends BorderPane{
 	public View(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		TextInputDialog dialog = new TextInputDialog();
-		dialog.setTitle("Text Input Dialog");
+		dialog.setTitle("Start");
 		dialog.setHeaderText(null);
-		dialog.setContentText("Please enter your Friends IP address:");
+		dialog.setContentText("Gib bitte die IP-Adresse deines Freundes ein:");
 		Optional<String> result = dialog.showAndWait();
 		mod = new Model();
 		result.ifPresent(s -> con = new Controller(s,65535,mod, this));
 		start();
+		xKanfang.setTextFill(Color.WHITE);
+		yKanfang.setTextFill(Color.WHITE);
+		anfang.setTextFill(Color.WHITE);
+		orientierung.setTextFill(Color.WHITE);
+		achtung.setTextFill(Color.WHITE);
+		an.setTextFill(Color.WHITE);
+		x.setTextFill(Color.WHITE);
+		y.setTextFill(Color.WHITE);
+		turn.setTextFill(Color.WHITE);
+		l.setTextFill(Color.WHITE);
+		lposition.setTextFill(Color.WHITE);
 	}
 	
 	
@@ -110,7 +121,7 @@ public class View extends BorderPane{
 		grid = feld(new GridPane());
 		
 		pane.setPrefSize(200, 600);
-		pane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY,Insets.EMPTY)));
+		pane.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, CornerRadii.EMPTY,Insets.EMPTY)));
 		pane.getChildren().addAll(l,a,b,c,d, lposition);
 		setLeft(pane);
 		setCenter(grid);
@@ -121,12 +132,14 @@ public class View extends BorderPane{
 	
 	public void anweisungstexte()
 	{
-		l.setText("Choose a furniture:");
-		l.setPadding(new Insets(10, 10, 5, 20));
+		l.setText("Wähle ein Möbelstück:");
+		l.setPadding(new Insets(10, 10, 5, 10));
 		l.setFont(new Font("Arial", 16));
 		l.setStyle("-fx-font-weight: bold");
+		l.setTextFill(Color.WHITE);
 		
-		lposition.setText("       Specify the \n position of the ship:");
+		lposition.setText(" Platziere das \n Möbelstück im Raum:");
+		lposition.setTextFill(Color.WHITE);
 		lposition.setPadding(new Insets(10, 10, 10, 20));
 		lposition.setFont(new Font("Arial", 16));
 		lposition.setLayoutY(330);
@@ -160,14 +173,14 @@ public class View extends BorderPane{
             	x.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
     	        BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID,
     	        CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
-            	x.setBackground(new Background(new BackgroundFill(Color.LAVENDER, CornerRadii.EMPTY,Insets.EMPTY)));
+            	x.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY,Insets.EMPTY)));
             	grid.add(x, i, 0);
             }
             t.setPrefSize(65, 65);
         	t.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
 	        BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID,
 	        CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
-        	t.setBackground(new Background(new BackgroundFill(Color.LAVENDER, CornerRadii.EMPTY,Insets.EMPTY)));
+        	t.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY,Insets.EMPTY)));
         }
         
         for (int i = 0; i < numRows; i++) {
@@ -187,7 +200,7 @@ public class View extends BorderPane{
         	t.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
 	        BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID,
 	        CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
-        	t.setBackground(new Background(new BackgroundFill(Color.LAVENDER, CornerRadii.EMPTY,Insets.EMPTY)));
+        	t.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY,Insets.EMPTY)));
         }
         return grid;
 	}
@@ -259,7 +272,7 @@ public class View extends BorderPane{
 		anfang.setLayoutX(10);
 		anfang.setLayoutY(395);
 		anfang.setPrefSize(180, 20);
-		anfang.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.BLACK, Color.RED,
+		anfang.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.WHITE, Color.RED,
 		        BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
 		        CornerRadii.EMPTY, new BorderWidths(3), Insets.EMPTY)));
 		
@@ -289,30 +302,34 @@ public class View extends BorderPane{
 		orientierung.setLayoutX(10);
 		orientierung.setLayoutY(520);
 		orientierung.setPrefSize(180, 20);
-		orientierung.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.BLACK, Color.RED,
+		orientierung.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.WHITE, Color.RED,
 		        BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
 		        CornerRadii.EMPTY, new BorderWidths(3), Insets.EMPTY)));
 		
 		
 		
-		Label v = new Label("vertical");
+		Label v = new Label("vertikal");
 		v.setFont(new Font("Arial", 16));	
 		rb1.setToggleGroup(group);
+		v.setTextFill(Color.WHITE);
 		rb1.setText(v.getText());
 		rb1.setLayoutX(20);
 		rb1.setLayoutY(570);
 		rb1.setUserData("ver");
+		rb1.setTextFill(Color.WHITE);
 		
 		Label h = new Label("horizontal");
+		h.setTextFill(Color.WHITE);
 		h.setFont(new Font("Arial", 16));
 		rb2.setToggleGroup(group);
 		rb2.setText(h.getText());
 		rb2.setLayoutX(20);
 		rb2.setLayoutY(600);
 		rb2.setUserData("hor");
+		rb2.setTextFill(Color.WHITE);
 		
 		//OK 
-		ok.setText("Submit");
+		ok.setText("Bestätigen");
 		ok.setLayoutX(20);
 		ok.setLayoutY(670);
 		ok.setPrefSize(160, 20);
@@ -359,7 +376,7 @@ public class View extends BorderPane{
 	public void right()
 	{
 		pane1.setPrefSize(200, 600);
-		pane1.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY,Insets.EMPTY)));		
+		pane1.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, CornerRadii.EMPTY,Insets.EMPTY)));		
 		
 		input.setPrefSize(180, 400);
 		input.setEditable(false);
@@ -379,7 +396,7 @@ public class View extends BorderPane{
 		an.setLayoutX(10);
 		an.setLayoutY(510);
 		an.setPrefSize(180, 20);
-		an.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.BLACK, Color.RED,
+		an.setBorder(new Border(new BorderStroke(Color.RED, Color.RED, Color.WHITE, Color.RED,
 		        BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
 		        CornerRadii.EMPTY, new BorderWidths(3), Insets.EMPTY)));
 				
@@ -414,7 +431,7 @@ public class View extends BorderPane{
 		turn.setLayoutX(60);
 		turn.setLayoutY(680);
 		turn.setFont(new Font("Arial", 18));
-		
+	
 		pane1.getChildren().addAll(turn, input, feld, send, an, x, y, xGegner, yGegner, submit2);
 		primaryStage.setWidth(1630);
 		primaryStage.setHeight(730);

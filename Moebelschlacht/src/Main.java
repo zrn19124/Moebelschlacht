@@ -12,7 +12,7 @@ public class Main extends Application{
 		View view = new View(stage);		
 		
 		Scene scene = new Scene(view);
-		stage.setTitle("Schiffeversenken");
+		stage.setTitle("Moebelschlacht");
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();

@@ -76,36 +76,54 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 			vi.getC().setDisable(true);
 			vi.getD().setDisable(true);
 			visibleKordinatenAngabe();
-			vi.getAchtung().setText("Attention: 2 fields");
+			vi.getAchtung().setText("Achtung: 2 Felder");
 			a++;
 			anzahlfelder = 2;
 			tf++;
 			zsp = 2;
 		} else {
 			vi.visible();
-			vi.getB().setDisable(false);
-			vi.getC().setDisable(false);
-			vi.getD().setDisable(false);
+			if(b<3)
+			{
+				vi.getB().setDisable(false);
+			}
+			if(c<2)
+			{
+				vi.getC().setDisable(false);
+			}
+			if(d<1)
+			{
+				vi.getD().setDisable(false);
+			}
 			tf = 0;
 			a--;
 		}
 	}
-
+													
 	public void schiff2() {
 		if (tf % 2 == 0) {
 			vi.getA().setDisable(true);
 			vi.getC().setDisable(true);
 			vi.getD().setDisable(true);
 			visibleKordinatenAngabe();
-			vi.getAchtung().setText("Attention: 3 fields");
+			vi.getAchtung().setText("Achtung: 3 Felder");
 			b++;
 			anzahlfelder = 3;
 			tf++;
 			zsp = 3;
 		} else {
-			vi.getA().setDisable(false);
-			vi.getC().setDisable(false);
-			vi.getD().setDisable(false);
+			if(a<4)
+			{
+				vi.getA().setDisable(false);
+			}
+			if(c<2)
+			{
+				vi.getC().setDisable(false);
+			}
+			if(d<1)
+			{
+				vi.getD().setDisable(false);
+			}
 			vi.visible();
 			tf = 0;
 			b--;
@@ -118,15 +136,24 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 			vi.getB().setDisable(true);
 			vi.getD().setDisable(true);
 			visibleKordinatenAngabe();
-			vi.getAchtung().setText("Attention: 4 fields");
+			vi.getAchtung().setText("Achtung: 4 Felder");
 			c++;
 			anzahlfelder = 4;
 			tf++;
 			zsp = 4;
 		} else {
-			vi.getA().setDisable(false);
-			vi.getB().setDisable(false);
-			vi.getD().setDisable(false);
+			if(a<4)
+			{
+				vi.getA().setDisable(false);
+			}
+			if(b<3)
+			{
+				vi.getB().setDisable(false);
+			}
+			if(d<1)
+			{
+				vi.getD().setDisable(false);
+			}
 			vi.visible();
 			tf = 0;
 			c--;
@@ -141,15 +168,25 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 			vi.getB().setDisable(true);
 			vi.getC().setDisable(true);
 			visibleKordinatenAngabe();
-			vi.getAchtung().setText("Attention: 5 fields");
+			vi.getAchtung().setText("Achtung: 5 Felder");
+			
 			d++;
 			anzahlfelder = 5;
 			tf++;
 			zsp = 5;
 		} else {
-			vi.getA().setDisable(false);
-			vi.getB().setDisable(false);
-			vi.getC().setDisable(false);
+			if(a<4)
+			{
+				vi.getA().setDisable(false);
+			}
+			if(c<3)
+			{
+				vi.getC().setDisable(false);
+			}
+			if(b<2)
+			{
+				vi.getB().setDisable(false);
+			}
 			vi.visible();
 			tf = 0;
 			d--;
@@ -217,7 +254,24 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 		
 			 p.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
 						BorderWidths.DEFAULT, Insets.EMPTY)));
-				p.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+			 
+			 // in entsprechender Farbe darstellen
+				
+				if (vi.getA().isDisabled() == false) {
+					p.setBackground(new Background(new BackgroundFill(Color.CADETBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+				}
+				if (vi.getB().isDisabled() == false) {
+					p.setBackground(new Background(new BackgroundFill(Color.DARKMAGENTA, CornerRadii.EMPTY, Insets.EMPTY)));
+				}
+				if (vi.getC().isDisabled() == false) {
+					p.setBackground(new Background(new BackgroundFill(Color.DEEPPINK, CornerRadii.EMPTY, Insets.EMPTY)));
+				}
+				if (vi.getD().isDisabled() == false) {
+					p.setBackground(new Background(new BackgroundFill(Color.MEDIUMAQUAMARINE, CornerRadii.EMPTY, Insets.EMPTY)));
+				}
+				
+				
+				
 				arli.add(p);
 				if (sp == "ver") {
 					
@@ -256,9 +310,9 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 	public void welchesschiff() // anzahl verwendet verringern
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Attention");
+		alert.setTitle("Achtung");
 		alert.setHeaderText("");
-		String s ="Please choose other coordinates!";
+		String s ="Gib bitte andere Koordinaten ein!";
 		alert.setContentText(s);
 		alert.show();
 		if (vi.getA().isDisabled() == false) {
@@ -360,13 +414,13 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 	public void send()
 	{
 		sendMessage(vi.getFeld().getText());
-		vi.getInput().appendText("You: " + vi.getFeld().getText() + "\n");
+		vi.getInput().appendText("Du: " + vi.getFeld().getText() + "\n");
 	}
 	
 	@Override
 	public void receiveMessage(String s) {
 		//TODO Das ist für den Chat; Die Nachricht ist der Parameter s
-		vi.getInput().appendText("Friend: "+ s + "\n");
+		vi.getInput().appendText("Freund: "+ s + "\n");
 		vi.getFeld().setText("");
 	}
 
@@ -387,13 +441,13 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 					vi.getxGegner().setDisable(true);
 					vi.getyGegner().setDisable(true);
 					vi.getSubmit2().setDisable(true);
-					Platform.runLater(() -> vi.setTurnText("Friends Turn"));
+					Platform.runLater(() -> vi.setTurnText("Zug deines Freundes"));
 					ready = !ready;
 				}else{
 					vi.getxGegner().setDisable(false);
 					vi.getyGegner().setDisable(false);
 					vi.getSubmit2().setDisable(false);
-					Platform.runLater(() -> vi.setTurnText("Your Turn"));
+					Platform.runLater(() -> vi.setTurnText("Dein Zug"));
 					ready = !ready;
 				}
 				break;
@@ -444,7 +498,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Winner");
 				alert.setHeaderText(null);
-				alert.setContentText("You Won! :)");
+				alert.setContentText("Du hast gewonnen! :)");
 
 				alert.showAndWait();
 				System.exit(0);
@@ -457,7 +511,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Loser");
 				alert.setHeaderText(null);
-				alert.setContentText("You Lost! :(");
+				alert.setContentText("Du hast verloren! :(");
 
 				alert.showAndWait();
 				System.exit(0);
@@ -474,7 +528,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 		vi.getxGegner().setDisable(true);
 		vi.getyGegner().setDisable(true);
 		vi.getSubmit2().setDisable(true);
-		Platform.runLater(() -> vi.setTurnText("Friends Turn"));
+		Platform.runLater(() -> vi.setTurnText("Zug deines Freundes"));
 		ready = !ready;
 	}
 }
