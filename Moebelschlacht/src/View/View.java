@@ -134,6 +134,7 @@ public class View extends BorderPane{
 		Optional<String> result = dialog.showAndWait();
 		mod = new Model();
 		result.ifPresent(s -> con = new Controller(s,65535,mod, this));
+		System.out.println(result);
 		start();
 		// Eingabe Name
 		
