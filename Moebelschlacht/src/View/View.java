@@ -33,6 +33,15 @@ import com.sun.javafx.css.Style;
 public class View extends BorderPane{
 
 	Controller con;
+	int time;
+	Thread timeThread = new Thread(() ->{ for(;;) {
+		time++;
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
 	long f = System.currentTimeMillis();
 	Model mod;
 	Stage primaryStage;

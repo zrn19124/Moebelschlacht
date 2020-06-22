@@ -1,6 +1,13 @@
 package Control;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -498,8 +505,19 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Winner");
 				alert.setHeaderText(null);
-				alert.setContentText("Du hast gewonnen! :) \n  Deine Zeit:" + (System.currentTimeMillis()- vi.getF()));
-				
+				try {
+					alert.setContentText("Du hast verloren! :( \n  Deine Zeit:" + (System.currentTimeMillis()- vi.getF())+"\n"+read());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+				try {
+					write((System.currentTimeMillis()-vi.getF()));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				alert.showAndWait();
 				System.exit(0);
 			});
@@ -511,8 +529,20 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Loser");
 				alert.setHeaderText(null);
-				alert.setContentText("Du hast verloren! :( \n  Deine Zeit:" + (System.currentTimeMillis()- vi.getF()));
-
+				
+				try {
+					alert.setContentText("Du hast verloren! :( \n  Deine Zeit:" + (System.currentTimeMillis()- vi.getF())+"\n"+read());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+				try {
+					write((System.currentTimeMillis()-vi.getF()));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				alert.showAndWait();
 				System.exit(0);
 			});
@@ -520,6 +550,26 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 		}
 	}
 
+	public void write(long tw) throws IOException
+	{
+		FileWriter fw = new FileWriter("../Bestzeiten.txt");
+	    BufferedWriter bw = new BufferedWriter(fw);
+
+	    bw.write(""+tw);
+	    bw.close();
+	}
+	
+	public String read() throws IOException
+	{
+		FileReader fr = new FileReader(new File("../Bestzeiten.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(new File("../Bestzeiten.txt")));
+		String zeile = null;
+		String s = "";
+		while ((zeile = br.readLine()) != null) {
+            s = s + "\n"+ zeile ;
+        }
+		return s;
+	}
 	
 	public void submit2()
 	{
