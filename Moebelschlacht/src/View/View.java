@@ -33,6 +33,9 @@ import com.sun.javafx.css.Style;
 public class View extends BorderPane{
 
 	Controller con;
+	int time;
+	Thread timeThread = new Thread(() ->{ for(;;) {time++;}});
+	
 	Model mod;
 	Stage primaryStage;
 	Button a = new Button();
@@ -99,6 +102,15 @@ public class View extends BorderPane{
 		mod = new Model();
 		result.ifPresent(s -> con = new Controller(s,65535,mod, this));
 		start();
+		// Eingabe Name
+		TextInputDialog eingabename = new TextInputDialog();
+		eingabename.setTitle("Start");
+		eingabename.setHeaderText(null);
+		eingabename.setContentText("Gib deinen Namen ein:");
+		Optional<String> result2 = eingabename.showAndWait();
+		
+		
+		
 		xKanfang.setTextFill(Color.WHITE);
 		yKanfang.setTextFill(Color.WHITE);
 		anfang.setTextFill(Color.WHITE);
