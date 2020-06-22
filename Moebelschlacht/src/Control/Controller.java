@@ -498,8 +498,8 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Winner");
 				alert.setHeaderText(null);
-				alert.setContentText("Du hast gewonnen! :)");
-
+				alert.setContentText("Du hast gewonnen! :) \n  Deine Zeit:" + vi.getF());
+				
 				alert.showAndWait();
 				System.exit(0);
 			});
@@ -511,7 +511,7 @@ public class Controller extends Client implements EventHandler<ActionEvent> {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Loser");
 				alert.setHeaderText(null);
-				alert.setContentText("Du hast verloren! :(");
+				alert.setContentText("Du hast verloren! :( \n  Deine Zeit:" + vi.getF());
 
 				alert.showAndWait();
 				System.exit(0);

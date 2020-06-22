@@ -35,13 +35,39 @@ public class View extends BorderPane{
 	Controller con;
 	int time;
 	Thread timeThread = new Thread(() ->{ for(;;) {time++;}});
-	
+	long f = System.currentTimeMillis();
 	Model mod;
 	Stage primaryStage;
 	Button a = new Button();
 	Button b = new Button();
 	Button c = new Button();
+	
+	public Label getL() {
+		return l;
+	}
+
+	public void setL(Label l) {
+		this.l = l;
+	}
+
+	public long getF() {
+		return f;
+	}
+
+	public void setF(long f) {
+		this.f = f;
+	}
+
 	Button d = new Button();
+	TextInputDialog eingabename = new TextInputDialog();
+	public TextInputDialog getEingabename() {
+		return eingabename;
+	}
+
+	public void setEingabename(TextInputDialog eingabename) {
+		this.eingabename = eingabename;
+	}
+
 	Button ok = new Button();
 	Pane pane = new Pane();
 	Label l = new Label();
@@ -103,7 +129,7 @@ public class View extends BorderPane{
 		result.ifPresent(s -> con = new Controller(s,65535,mod, this));
 		start();
 		// Eingabe Name
-		TextInputDialog eingabename = new TextInputDialog();
+		
 		eingabename.setTitle("Start");
 		eingabename.setHeaderText(null);
 		eingabename.setContentText("Gib deinen Namen ein:");
